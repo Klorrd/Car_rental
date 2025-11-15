@@ -54,6 +54,7 @@ public class ID2530635EcoRideSystem {
     }
 
     // Create reservation
+    // Might need to inclde reservation start and end dates
     public String makeReservation(
         ID2530635Customer customer, 
         ID2530635Vehicle vehicle,
@@ -61,11 +62,12 @@ public class ID2530635EcoRideSystem {
         double totalKm, 
         LocalDate 
         reservationDate,
-        LocalDate rentalStartDate, boolean depositPaid) {
+        LocalDate rentalStartDate, 
+        boolean depositPaid) {
         if (!"Available".equalsIgnoreCase(vehicle.getAvailability())) {
-            return null; // cannot reserve
+            return null; // cant reserve if not available
         }
-        // booking must be at least 3 days prior
+        // booking must be at least 3 days ahead
         if (reservationDate.plusDays(3).isAfter(rentalStartDate)) {
             return null;
         }
@@ -85,7 +87,6 @@ public class ID2530635EcoRideSystem {
         return true;
     }
 
-    // invoice generation
     public ID2530635Invoice generateInvoice(String reservationId) {
         Optional<ID2530635Reservation> opt = findReservationById(reservationId);
         if (!opt.isPresent()) return null;

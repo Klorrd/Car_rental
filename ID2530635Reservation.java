@@ -6,8 +6,8 @@ public class ID2530635Reservation {
     private final ID2530635Customer customer;
     private final ID2530635Vehicle vehicle;
     private final int rentalDays;
-    private final double totalKm; // expected total kilometers to be used during rental
-    private final LocalDate reservationDate; // when reservation was made
+    private final double totalKm; 
+    private final LocalDate reservationDate;
     private final LocalDate rentalStartDate;
     private boolean depositPaid;
 
@@ -39,7 +39,7 @@ public class ID2530635Reservation {
     public void setDepositPaid(boolean paid) { this.depositPaid = paid; }
 
     public boolean isCancelable(LocalDate today) {
-        // cannot update or cancel after 2 days from reservation (business rule)
+        // Cant update or cancel after 2 days from reservation 
         return !today.isAfter(reservationDate.plusDays(2));
     }
 

@@ -26,9 +26,10 @@ public class ID2530635Invoice {
         double extraKm = Math.max(0, reservation.getTotalKm() - allowedKmTotal);
         extraKmCharge = extraKm * c.extraKmCharge;
 
-        // discount 10% for rentals >= 7 days (on base price)
+        // Discount of 10% given for rentals >= 7 days 
         discountAmount = (reservation.getRentalDays() >= 7) ? (0.10 * basePrice) : 0.0;
 
+        // Check for validity of final amount calculation
         double subtotal = basePrice - discountAmount + extraKmCharge;
         taxAmount = subtotal * c.taxRate;
         finalAmount = subtotal + taxAmount - (reservation.isDepositPaid() ? DEPOSIT : 0.0);
