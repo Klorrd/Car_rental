@@ -44,6 +44,7 @@ public class Main {
         system.addVehicle(new ID2530635Vehicle("CAR001", "Toyota Prius", ID2530635Category.HYBRID, 3500.0));
         system.addVehicle(new ID2530635Vehicle("CAR002", "Honda Civic", ID2530635Category.COMPACT_PETROL, 4500.0));
         system.addVehicle(new ID2530635Vehicle("CAR003", "BMW X5", ID2530635Category.LUXURY_SUV, 8500.0));
+        system.addVehicle(new ID2530635Vehicle("CAR004", "Tesla Model 3", ID2530635Category.ELECTRIC, 6000.0));
         
         // Dummy customers
         system.registerCustomer(new ID2530635Customer("123456789V", "Anuradhi Wijekoon", "0771234567", "anuradhi@email.com"));
@@ -237,6 +238,8 @@ public class Main {
         String id = scanner.nextLine();
         
         System.out.println("Searching for reservation with ID: " + id + "...");
+        
+        // If not found, currently system takes the user to the main menu, no option given to try again
         boolean success = system.cancelReservation(id, LocalDate.now());
         if (success) {
             System.out.println("✅ Reservation cancelled successfully!");
@@ -354,6 +357,7 @@ public class Main {
                 System.out.println("\n--- Available Vehicles ---");
                 break;
             case 3:
+                // Show categories. Possible to simplify category names/ids?
                 System.out.print("Enter Category (COMPACT_PETROL/HYBRID/ELECTRIC/LUXURY_SUV): ");
                 String categoryStr = scanner.nextLine();
                 try {

@@ -67,7 +67,7 @@ public class ID2530635EcoRideSystem {
         if (!"Available".equalsIgnoreCase(vehicle.getAvailability())) {
             return null; // cant reserve if not available
         }
-        // booking must be at least 3 days ahead
+        // Booking must be at least 3 days ahead
         if (reservationDate.plusDays(3).isAfter(rentalStartDate)) {
             return null;
         }

@@ -1,4 +1,5 @@
 public enum ID2530635Category {
+    // dailyFee, freeKm, extraKmCharge, taxRate %
     COMPACT_PETROL(5000, 100, 50, 0.10),
     HYBRID(7500, 150, 60, 0.12),
     ELECTRIC(10000, 200, 40, 0.08),
