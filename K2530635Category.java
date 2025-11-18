@@ -1,4 +1,4 @@
-public enum ID2530635Category {
+public enum K2530635Category {
     // dailyFee, freeKm, extraKmCharge, taxRate %
     COMPACT_PETROL(5000, 100, 50, 0.10),
     HYBRID(7500, 150, 60, 0.12),
@@ -10,7 +10,7 @@ public enum ID2530635Category {
     public final double extraKmCharge;
     public final double taxRate;
 
-    ID2530635Category(double dailyFee, int freeKm, double extraKmCharge, double taxRate) {
+    K2530635Category(double dailyFee, int freeKm, double extraKmCharge, double taxRate) {
         this.dailyFee = dailyFee;
         this.freeKm = freeKm;
         this.extraKmCharge = extraKmCharge;

@@ -1,18 +1,18 @@
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class ID2530635Reservation {
+public class K2530635Reservation {
     private final String reservationId;
-    private final ID2530635Customer customer;
-    private final ID2530635Vehicle vehicle;
+    private final K2530635Customer customer;
+    private final K2530635Vehicle vehicle;
     private final int rentalDays;
     private final double totalKm; 
     private final LocalDate reservationDate;
     private final LocalDate rentalStartDate;
     private boolean depositPaid;
 
-    public ID2530635Reservation(ID2530635Customer customer,
-                                ID2530635Vehicle vehicle,
+    public K2530635Reservation(K2530635Customer customer,
+                                K2530635Vehicle vehicle,
                                 int rentalDays,
                                 double totalKm,
                                 LocalDate reservationDate,
@@ -29,8 +29,8 @@ public class ID2530635Reservation {
     }
 
     public String getReservationId() { return reservationId; }
-    public ID2530635Customer getCustomer() { return customer; }
-    public ID2530635Vehicle getVehicle() { return vehicle; }
+    public K2530635Customer getCustomer() { return customer; }
+    public K2530635Vehicle getVehicle() { return vehicle; }
     public int getRentalDays() { return rentalDays; }
     public double getTotalKm() { return totalKm; }
     public LocalDate getReservationDate() { return reservationDate; }

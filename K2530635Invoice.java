@@ -1,8 +1,8 @@
 import java.util.UUID;
 
-public class ID2530635Invoice {
+public class K2530635Invoice {
     private final String invoiceId;
-    private final ID2530635Reservation reservation;
+    private final K2530635Reservation reservation;
     private double basePrice;
     private double extraKmCharge;
     private double discountAmount;
@@ -10,15 +10,15 @@ public class ID2530635Invoice {
     private double finalAmount;
     public static final double DEPOSIT = 5000.0;
 
-    public ID2530635Invoice(ID2530635Reservation reservation) {
+    public K2530635Invoice(K2530635Reservation reservation) {
         this.invoiceId = "INV-" + UUID.randomUUID().toString().substring(0,8).toUpperCase();
         this.reservation = reservation;
         calculate();
     }
 
     private void calculate() {
-        ID2530635Vehicle v = reservation.getVehicle();
-        ID2530635Category c = v.getCategory();
+        K2530635Vehicle v = reservation.getVehicle();
+        K2530635Category c = v.getCategory();
 
         basePrice = c.dailyFee * reservation.getRentalDays();
 
@@ -36,12 +36,12 @@ public class ID2530635Invoice {
     }
 
     public String getInvoiceId() { return invoiceId; }
-    public ID2530635Reservation getReservation() { return reservation; }
+    public K2530635Reservation getReservation() { return reservation; }
     public double getFinalAmount() { return finalAmount; }
 
     public void printInvoice() {
-        ID2530635Vehicle v = reservation.getVehicle();
-        ID2530635Category c = v.getCategory();
+        K2530635Vehicle v = reservation.getVehicle();
+        K2530635Category c = v.getCategory();
         double allowedKmTotal = c.freeKm * reservation.getRentalDays();
         double extraKm = Math.max(0, reservation.getTotalKm() - allowedKmTotal);
         

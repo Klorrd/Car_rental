@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Main {
-    private static ID2530635EcoRideSystem system = new ID2530635EcoRideSystem();
+    private static K2530635EcoRideSystem system = new K2530635EcoRideSystem();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -41,14 +41,14 @@ public class Main {
 
     private static void initializeSampleData() {
         // Dummy vehicles
-        system.addVehicle(new ID2530635Vehicle("CAR001", "Toyota Prius", ID2530635Category.HYBRID, 3500.0));
-        system.addVehicle(new ID2530635Vehicle("CAR002", "Honda Civic", ID2530635Category.COMPACT_PETROL, 4500.0));
-        system.addVehicle(new ID2530635Vehicle("CAR003", "BMW X5", ID2530635Category.LUXURY_SUV, 8500.0));
-        system.addVehicle(new ID2530635Vehicle("CAR004", "Tesla Model 3", ID2530635Category.ELECTRIC, 6000.0));
+        system.addVehicle(new K2530635Vehicle("CAR001", "Toyota Prius", K2530635Category.HYBRID, 3500.0));
+        system.addVehicle(new K2530635Vehicle("CAR002", "Honda Civic", K2530635Category.COMPACT_PETROL, 4500.0));
+        system.addVehicle(new K2530635Vehicle("CAR003", "BMW X5", K2530635Category.LUXURY_SUV, 8500.0));
+        system.addVehicle(new K2530635Vehicle("CAR004", "Tesla Model 3", K2530635Category.ELECTRIC, 6000.0));
         
         // Dummy customers
-        system.registerCustomer(new ID2530635Customer("123456789V", "Anuradhi Wijekoon", "0771234567", "anuradhi@email.com"));
-        system.registerCustomer(new ID2530635Customer("987654321V", "Kalindu Matharage", "0779876543", "kalindu@email.com"));
+        system.registerCustomer(new K2530635Customer("123456789V", "Anuradhi Wijekoon", "0771234567", "anuradhi@email.com"));
+        system.registerCustomer(new K2530635Customer("987654321V", "Kalindu Matharage", "0779876543", "kalindu@email.com"));
     }
 
     private static void showMenu() {
@@ -81,13 +81,13 @@ public class Main {
         scanner.nextLine();
 
         try {
-            ID2530635Category category = ID2530635Category.valueOf(categoryStr.toUpperCase());
-            Optional<ID2530635Vehicle> existing = system.findVehicleById(carId);
+            K2530635Category category = K2530635Category.valueOf(categoryStr.toUpperCase());
+            Optional<K2530635Vehicle> existing = system.findVehicleById(carId);
             if (existing.isPresent()) {
                 System.out.println("Vehicle with this ID already exists!");
                 return;
             }
-            system.addVehicle(new ID2530635Vehicle(carId, model, category, dailyRate));
+            system.addVehicle(new K2530635Vehicle(carId, model, category, dailyRate));
             System.out.println("Vehicle added successfully!");
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid category. Please use COMPACT_PETROL, HYBRID, ELECTRIC, or LUXURY_SUV.");
@@ -106,26 +106,26 @@ public class Main {
 
         // Check if customer already exists
         System.out.println("Checking if customer already exists...");
-        Optional<ID2530635Customer> existing = system.findCustomerByNic(nic);
+        Optional<K2530635Customer> existing = system.findCustomerByNic(nic);
         if (existing.isPresent()) {
-            ID2530635Customer existingCustomer = existing.get();
+            K2530635Customer existingCustomer = existing.get();
             System.out.println("❌ Customer with NIC/Passport '" + nic + "' already exists!");
             System.out.println("📋 Existing customer: " + existingCustomer.getName() + " - " + existingCustomer.getContact());
             System.out.println("💡 Use this NIC/Passport to make reservations directly");
             return;
         }
 
-        system.registerCustomer(new ID2530635Customer(nic, name, phone, email));
+        system.registerCustomer(new K2530635Customer(nic, name, phone, email));
         System.out.println("Customer registered successfully!");
     }
 
     private static void viewCustomers() {
-        List<ID2530635Customer> customers = system.listCustomers();
+        List<K2530635Customer> customers = system.listCustomers();
         if (customers.isEmpty()) {
             System.out.println("No customers registered. Please register using the menu.");
         } else {
             System.out.println("\n--- Registered Customers ---");
-            for (ID2530635Customer c : customers) {
+            for (K2530635Customer c : customers) {
                 System.out.println(c);
             }
         }
@@ -137,7 +137,7 @@ public class Main {
         
         // Search for existing customer
         System.out.println("Searching for customer with NIC/Passport: " + nic + "...");
-        Optional<ID2530635Customer> customerOpt = system.findCustomerByNic(nic);
+        Optional<K2530635Customer> customerOpt = system.findCustomerByNic(nic);
         
         if (!customerOpt.isPresent()) {
             System.out.println("❌ No customer exists with NIC/Passport: " + nic);
@@ -147,7 +147,7 @@ public class Main {
         }
         
         // Customer found > show confirmation
-        ID2530635Customer foundCustomer = customerOpt.get();
+        K2530635Customer foundCustomer = customerOpt.get();
         System.out.println("✅ Customer found: " + foundCustomer.getName() + " (" + foundCustomer.getContact() + ")");
 
         System.out.print("Enter Car ID: ");
@@ -155,7 +155,7 @@ public class Main {
         
         // Search for existing vehicle
         System.out.println("Searching for vehicle with ID: " + carId + "...");
-        Optional<ID2530635Vehicle> vehicleOpt = system.findVehicleById(carId);
+        Optional<K2530635Vehicle> vehicleOpt = system.findVehicleById(carId);
         
         if (!vehicleOpt.isPresent()) {
             System.out.println("❌ No vehicle exists with ID: " + carId);
@@ -164,7 +164,7 @@ public class Main {
         }
         
         // Vehicle found > show confirmation and availability
-        ID2530635Vehicle foundVehicle = vehicleOpt.get();
+        K2530635Vehicle foundVehicle = vehicleOpt.get();
         System.out.println("✅ Vehicle found: " + foundVehicle.getModel() + " (" + foundVehicle.getCategory().name() + ")");
         System.out.println("📊 Status: " + foundVehicle.getAvailability());
 
@@ -201,7 +201,7 @@ public class Main {
         System.out.print("Enter customer name to search (or press Enter to view all): ");
         String name = scanner.nextLine();
         
-        List<ID2530635Reservation> reservations;
+        List<K2530635Reservation> reservations;
         if (name.trim().isEmpty()) {
             reservations = system.searchReservationByName("");
         } else {
@@ -212,7 +212,7 @@ public class Main {
             System.out.println("No reservations found.");
         } else {
             System.out.println("\n--- Reservations ---");
-            for (ID2530635Reservation r : reservations) {
+            for (K2530635Reservation r : reservations) {
                 System.out.println(r);
             }
         }
@@ -223,7 +223,7 @@ public class Main {
         String id = scanner.nextLine();
         
         System.out.println("Searching for reservation with ID: " + id + "...");
-        ID2530635Invoice invoice = system.generateInvoice(id);
+        K2530635Invoice invoice = system.generateInvoice(id);
         if (invoice != null) {
             System.out.println("✅ Reservation found! Generating invoice...");
             invoice.printInvoice();
@@ -257,14 +257,14 @@ public class Main {
         String carId = scanner.nextLine();
         
         System.out.println("Searching for vehicle with ID: " + carId + "...");
-        Optional<ID2530635Vehicle> opt = system.findVehicleById(carId);
+        Optional<K2530635Vehicle> opt = system.findVehicleById(carId);
         if (!opt.isPresent()) {
             System.out.println("❌ No vehicle exists with ID: " + carId);
             System.out.println("💡 Use option 4 'View Vehicles' to see all available vehicles");
             return;
         }
         
-        ID2530635Vehicle vehicle = opt.get();
+        K2530635Vehicle vehicle = opt.get();
         System.out.println("Current vehicle details: " + vehicle);
         
         System.out.print("Enter new Model (current: " + vehicle.getModel() + "): ");
@@ -274,10 +274,10 @@ public class Main {
         // This might be buggy, check for stability
         System.out.print("Enter new Category (current: " + vehicle.getCategory().name() + ") - (COMPACT_PETROL/HYBRID/ELECTRIC/LUXURY_SUV): ");
         String categoryStr = scanner.nextLine();
-        ID2530635Category newCategory = vehicle.getCategory();
+        K2530635Category newCategory = vehicle.getCategory();
         if (!categoryStr.trim().isEmpty()) {
             try {
-                newCategory = ID2530635Category.valueOf(categoryStr.toUpperCase());
+                newCategory = K2530635Category.valueOf(categoryStr.toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("Invalid category. Keeping current category.");
             }
@@ -307,7 +307,7 @@ public class Main {
         String carId = scanner.nextLine();
         
         System.out.println("Searching for vehicle with ID: " + carId + "...");
-        Optional<ID2530635Vehicle> opt = system.findVehicleById(carId);
+        Optional<K2530635Vehicle> opt = system.findVehicleById(carId);
         if (!opt.isPresent()) {
             System.out.println("❌ No vehicle exists with ID: " + carId);
             System.out.println("💡 Use option 4 'View Vehicles' to see all available vehicles");
@@ -340,8 +340,8 @@ public class Main {
         int choice = scanner.nextInt();
         scanner.nextLine();
         
-        List<ID2530635Vehicle> vehicles = system.listVehicles();
-        List<ID2530635Vehicle> filteredVehicles = new ArrayList<>();
+        List<K2530635Vehicle> vehicles = system.listVehicles();
+        List<K2530635Vehicle> filteredVehicles = new ArrayList<>();
         
         switch (choice) {
             case 1:
@@ -349,7 +349,7 @@ public class Main {
                 System.out.println("\n--- All Vehicles ---");
                 break;
             case 2:
-                for (ID2530635Vehicle v : vehicles) {
+                for (K2530635Vehicle v : vehicles) {
                     if ("Available".equalsIgnoreCase(v.getAvailability())) {
                         filteredVehicles.add(v);
                     }
@@ -361,8 +361,8 @@ public class Main {
                 System.out.print("Enter Category (COMPACT_PETROL/HYBRID/ELECTRIC/LUXURY_SUV): ");
                 String categoryStr = scanner.nextLine();
                 try {
-                    ID2530635Category category = ID2530635Category.valueOf(categoryStr.toUpperCase());
-                    for (ID2530635Vehicle v : vehicles) {
+                    K2530635Category category = K2530635Category.valueOf(categoryStr.toUpperCase());
+                    for (K2530635Vehicle v : vehicles) {
                         if (v.getCategory() == category) {
                             filteredVehicles.add(v);
                         }
@@ -385,7 +385,7 @@ public class Main {
             System.out.printf("%-10s %-15s %-15s %-12s %-15s%n", 
                 "Car ID", "Model", "Category", "Daily Rate", "Availability");
             System.out.println("------------------------------------------------------------------------");
-            for (ID2530635Vehicle v : filteredVehicles) {
+            for (K2530635Vehicle v : filteredVehicles) {
                 System.out.printf("%-10s %-15s %-15s LKR %-8.2f %-15s%n", 
                     v.getCarId(), 
                     v.getModel(), 
@@ -401,7 +401,7 @@ public class Main {
         String id = scanner.nextLine();
         
         System.out.println("Searching for reservation with ID: " + id + "...");
-        Optional<ID2530635Reservation> opt = system.findReservationById(id);
+        Optional<K2530635Reservation> opt = system.findReservationById(id);
         if (opt.isPresent()) {
             System.out.println("✅ Reservation Found!");
             System.out.println("\n--- Reservation Details ---");
@@ -418,13 +418,13 @@ public class Main {
         
         try {
             LocalDate date = LocalDate.parse(dateStr);
-            List<ID2530635Reservation> reservations = system.viewByDate(date);
+            List<K2530635Reservation> reservations = system.viewByDate(date);
             
             if (reservations.isEmpty()) {
                 System.out.println("No bookings found for date: " + date);
             } else {
                 System.out.println("\n--- Bookings for " + date + " ---");
-                for (ID2530635Reservation r : reservations) {
+                for (K2530635Reservation r : reservations) {
                     System.out.println(r);
                 }
             }
